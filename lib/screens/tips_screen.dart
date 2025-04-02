@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:plant_app/styles/layouts.dart';
+import 'package:plant_app/styles/layout.dart';
 
 class TipsScreen extends StatefulWidget {
   const TipsScreen({super.key});

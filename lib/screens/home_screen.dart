@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/constants/texts.dart';
-import 'package:plant_app/styles/layouts.dart';
+import 'package:plant_app/styles/layout.dart';
+import '../widgets/custom_elements.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
