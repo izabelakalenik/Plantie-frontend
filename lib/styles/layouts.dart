@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-EdgeInsets customScreenPadding = const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0);
+import '../constants/colors.dart';
+
+EdgeInsets customScreenPadding =
+    const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0);
 
 class MainLayout extends StatelessWidget {
   final Widget child;
@@ -72,7 +75,6 @@ class CustomBottomNavBar extends StatelessWidget {
       unselectedIconTheme: theme.unselectedIconTheme,
       selectedLabelStyle: theme.selectedLabelStyle,
       unselectedLabelStyle: theme.unselectedLabelStyle,
-
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.favorite_border),
@@ -87,6 +89,76 @@ class CustomBottomNavBar extends StatelessWidget {
           label: "Tips",
         ),
       ],
+    );
+  }
+}
+
+class CustomTextContainer extends StatelessWidget {
+  final String text;
+
+  const CustomTextContainer({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
+
+    return Container(
+      width: double.infinity,
+      alignment: Alignment.center,
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: boxGreen,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Text(
+        text,
+        textAlign: TextAlign.center,
+        style: theme.bodyLarge,
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final String? text;
+  final IconData? icon;
+
+  const CustomButton({
+    super.key,
+    this.text,
+    this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context).textTheme;
+
+    return ElevatedButton(
+      onPressed: () {},
+      style: ElevatedButton.styleFrom(
+        backgroundColor: buttonGreen,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          if (icon != null)
+            Icon(
+              icon,
+              color: Colors.white,
+              size: 28,
+            ),
+          if (icon != null && text != null) const SizedBox(width: 8),
+          if (text != null) Text(text!, style: theme.bodyLarge),
+        ],
+      ),
     );
   }
 }

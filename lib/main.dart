@@ -3,5 +3,5 @@ import 'app.dart';
 
 
 void main() {
-  runApp(const Plantie());
+  runApp(const App());
 }
