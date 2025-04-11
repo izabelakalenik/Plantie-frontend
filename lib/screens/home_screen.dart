@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/constants/texts.dart';
 import 'package:plant_app/styles/layout.dart';
-import '../navigation/navigation_service.dart';
 import '../widgets/custom_elements.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,7 +11,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 1;
+  final int _currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +46,7 @@ class HomeScreenContent extends StatelessWidget {
           ),
           const SizedBox(height: 50),
           CustomButton(icon: Icons.photo_camera, onPressed: () {
-            NavigatorService.goToScreen(2);
+
           },),
         ],
       ),

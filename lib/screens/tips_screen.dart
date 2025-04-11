@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/styles/layout.dart';
 
-import '../navigation/navigation_service.dart';
 
 class TipsScreen extends StatefulWidget {
   const TipsScreen({super.key});
@@ -11,7 +10,7 @@ class TipsScreen extends StatefulWidget {
 }
 
 class _TipsScreenState extends State<TipsScreen> {
-  int _currentIndex = 0;
+  final int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {

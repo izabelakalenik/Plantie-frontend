@@ -57,18 +57,19 @@ class CustomBottomNavBar extends StatelessWidget {
       unselectedIconTheme: theme.unselectedIconTheme,
       selectedLabelStyle: theme.selectedLabelStyle,
       unselectedLabelStyle: theme.unselectedLabelStyle,
+      onTap: (index) => navigateTo(context, currentIndex, index),
       items: const [
         BottomNavigationBarItem(
-          icon: Icon(Icons.favorite_border),
-          label: "Saved",
+          icon: Icon(Icons.help_outline),
+          label: "Tips",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
           label: "Home",
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.help_outline),
-          label: "Tips",
+          icon: Icon(Icons.favorite_border),
+          label: "Saved",
         ),
       ],
     );
