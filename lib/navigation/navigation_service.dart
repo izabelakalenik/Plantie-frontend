@@ -3,30 +3,48 @@ import '../screens/home_screen.dart';
 import '../screens/saved_screen.dart';
 import '../screens/tips_screen.dart';
 
-class NavigatorService {
-  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+void navigateTo(BuildContext context, int currentIndex, int targetIndex) {
+  if (targetIndex == currentIndex) return;
 
-  static void goToScreen(int index) {
-    switch (index) {
-      case 0:
-        navigatorKey.currentState?.pushReplacement(
-          MaterialPageRoute(builder: (_) => const SavedScreen()),
-        );
-        break;
-      case 1:
-        navigatorKey.currentState?.pushReplacement(
-          MaterialPageRoute(builder: (_) => const HomeScreen()),
-        );
-        break;
-      case 2:
-        navigatorKey.currentState?.pushReplacement(
-          MaterialPageRoute(builder: (_) => const TipsScreen()),
-        );
-        break;
-      default:
-        navigatorKey.currentState?.pushReplacement(
-          MaterialPageRoute(builder: (_) => const HomeScreen()),
-        );
-    }
+  Widget screen;
+
+  switch (targetIndex) {
+    case 0:
+      screen = const TipsScreen();
+      break;
+    case 1:
+      screen = const HomeScreen();
+      break;
+    case 2:
+      screen = const SavedScreen();
+      break;
+    default:
+      return;
   }
+
+  final isForward = targetIndex > currentIndex;
+
+  Navigator.pushReplacement(
+    context,
+    PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => screen,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        const beginOffsetRight = Offset(1.0, 0.0);
+        const beginOffsetLeft = Offset(-1.0, 0.0);
+        const endOffset = Offset.zero;
+        const curve = Curves.ease;
+
+        final tween = Tween<Offset>(
+          begin: isForward ? beginOffsetRight : beginOffsetLeft,
+          end: endOffset,
+        ).chain(CurveTween(curve: curve));
+
+        return SlideTransition(
+          position: animation.drive(tween),
+          child: child,
+        );
+      },
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+  );
 }
