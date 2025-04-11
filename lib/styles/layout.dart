@@ -7,21 +7,27 @@ EdgeInsets customScreenPadding =
 class MainLayout extends StatelessWidget {
   final Widget child;
   final String appBarText;
+  final int currentIndex;
 
-  const MainLayout({required this.child, required this.appBarText, super.key});
+  const MainLayout({
+    required this.child,
+    required this.appBarText,
+    required this.currentIndex,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Container(
-        color: Colors.white,
-        child: Scaffold(
-          appBar: CustomAppBar(text: appBarText),
-          body: child,
-          bottomNavigationBar: const CustomBottomNavBar(),
+      child: Scaffold(
+        appBar: CustomAppBar(text: appBarText),
+        body: child,
+        bottomNavigationBar: CustomBottomNavBar(
+          currentIndex: currentIndex,
         ),
       ),
     );
   }
 }
+
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
+import '../navigation/navigation_service.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String text;
@@ -36,13 +37,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 }
 
 class CustomBottomNavBar extends StatelessWidget {
-  const CustomBottomNavBar({super.key});
+  final int currentIndex;
+
+  const CustomBottomNavBar({
+    super.key,
+    required this.currentIndex,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).bottomNavigationBarTheme;
 
     return BottomNavigationBar(
+      currentIndex: currentIndex,
       selectedItemColor: theme.selectedItemColor,
       unselectedItemColor: theme.unselectedItemColor,
       showUnselectedLabels: theme.showUnselectedLabels,
@@ -57,7 +64,7 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.home),
-          label: "Home Screen",
+          label: "Home",
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.help_outline),
@@ -67,6 +74,7 @@ class CustomBottomNavBar extends StatelessWidget {
     );
   }
 }
+
 
 class CustomTextContainer extends StatelessWidget {
   final String text;
@@ -100,11 +108,13 @@ class CustomTextContainer extends StatelessWidget {
 class CustomButton extends StatelessWidget {
   final String? text;
   final IconData? icon;
+  final VoidCallback onPressed;
 
   const CustomButton({
     super.key,
     this.text,
     this.icon,
+    required this.onPressed
   });
 
   @override
@@ -112,7 +122,7 @@ class CustomButton extends StatelessWidget {
     final theme = Theme.of(context).textTheme;
 
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
         backgroundColor: buttonGreen,
         shape: RoundedRectangleBorder(

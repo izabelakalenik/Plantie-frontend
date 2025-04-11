@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/styles/layout.dart';
 
+import '../navigation/navigation_service.dart';
+
 class SavedScreen extends StatefulWidget {
   const SavedScreen({super.key});
 
@@ -9,12 +11,14 @@ class SavedScreen extends StatefulWidget {
 }
 
 class _SavedScreenState extends State<SavedScreen> {
+  int _currentIndex = 2;
 
   @override
   Widget build(BuildContext context) {
-    return const MainLayout(
+    return MainLayout(
       appBarText: "Saved",
-      child: SavedScreenContent(),
+      currentIndex: _currentIndex,
+      child: const SavedScreenContent(),
     );
   }
 }
