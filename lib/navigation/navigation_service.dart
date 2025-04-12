@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import '../screens/home_screen.dart';
-import '../screens/saved_screen.dart';
 import '../screens/tips_screen.dart';
 
 void navigateTo(BuildContext context, int currentIndex, int targetIndex) {
@@ -15,9 +15,6 @@ void navigateTo(BuildContext context, int currentIndex, int targetIndex) {
     case 1:
       screen = const HomeScreen();
       break;
-    case 2:
-      screen = const SavedScreen();
-      break;
     default:
       return;
   }
@@ -26,25 +23,13 @@ void navigateTo(BuildContext context, int currentIndex, int targetIndex) {
 
   Navigator.pushReplacement(
     context,
-    PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => screen,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        const beginOffsetRight = Offset(1.0, 0.0);
-        const beginOffsetLeft = Offset(-1.0, 0.0);
-        const endOffset = Offset.zero;
-        const curve = Curves.ease;
-
-        final tween = Tween<Offset>(
-          begin: isForward ? beginOffsetRight : beginOffsetLeft,
-          end: endOffset,
-        ).chain(CurveTween(curve: curve));
-
-        return SlideTransition(
-          position: animation.drive(tween),
-          child: child,
-        );
-      },
-      transitionDuration: const Duration(milliseconds: 300),
+    PageTransition(
+      type: isForward
+          ? PageTransitionType.rightToLeft
+          : PageTransitionType.leftToRight,
+      child: screen,
+      duration: const Duration(milliseconds: 200),
+      reverseDuration: const Duration(milliseconds: 200),
     ),
   );
 }

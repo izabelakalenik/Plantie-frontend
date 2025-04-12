@@ -10,7 +10,7 @@ class TipsScreen extends StatefulWidget {
 }
 
 class _TipsScreenState extends State<TipsScreen> {
-  final int _currentIndex = 0;
+  final int _currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
