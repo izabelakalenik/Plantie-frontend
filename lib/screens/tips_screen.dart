@@ -108,85 +108,11 @@ class TipsScreenContent extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: 30),
-
-                  SizedBox(
-                    height: 360,
-                    child: PageView.builder(
-                      controller: pageController,
-                      itemCount: tips.length,
-                      onPageChanged: onPageChanged,
-                      itemBuilder: (context, index) {
-                        final tip = tips[index];
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomImageContainer(
-                              imagePath: tip['wrongImage'],
-                              backgroundColor: containerWrong,
-                              iconColor: colorRed,
-                              iconSign: Icons.close,
-                            ),
-                            const SizedBox(height: 20),
-                            CustomImageContainer(
-                              imagePath: tip['rightImage'],
-                              backgroundColor: containerRight,
-                              iconColor: colorGreen,
-                              iconSign: Icons.check,
-                            ),
-                            const SizedBox(height: 30),
-                            Text(
-                              tip['title'],
-                              style: const TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            const SizedBox(height: 10),
-                            Text(
-                              tip['description'],
-                              style: const TextStyle(
-                                  fontSize: 14, color: descTextColor),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                  ),
-
+                  buildPageView(context),
                   const SizedBox(height: 20),
-
-                  /// DOTS
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      tips.length,
-                          (index) => Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 3),
-                        child: _dot(index == pageIndex),
-                      ),
-                    ),
-                  ),
-
+                  buildDots(),
                   const SizedBox(height: 20),
-
-                  /// BUTTONS
-                  Row(
-                    children: [
-                      CustomButton(
-                        onPressed: pageIndex > 0 ? onBack : () {},
-                        text: "Back",
-                        horizontalPadding: 30,
-                        verticalPadding: 10,
-                      ),
-                      const Spacer(),
-                      CustomButton(
-                        onPressed: pageIndex < tips.length - 1
-                            ? onNext
-                            : () {},
-                        text: pageIndex == tips.length - 1 ? "Finish" : "Next",
-                        horizontalPadding: 30,
-                        verticalPadding: 10,
-                      ),
-                    ],
-                  ),
+                  buildButtons(),
                 ],
               ),
             ),
@@ -196,15 +122,90 @@ class TipsScreenContent extends StatelessWidget {
     );
   }
 
-  Widget _dot(bool isActive) {
-    return Container(
-      width: 10,
-      height: 10,
-      decoration: BoxDecoration(
-        color: isActive ? colorGreen: Colors.grey.shade300,
-        shape: BoxShape.circle,
+  Widget buildPageView(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.57,
+      child: PageView.builder(
+        controller: pageController,
+        itemCount: tips.length,
+        onPageChanged: onPageChanged,
+        itemBuilder: (context, index) {
+          final tip = tips[index];
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomImageContainer(
+                  imagePath: tip['wrongImage'],
+                  backgroundColor: containerWrong,
+                  iconColor: colorRed,
+                  iconSign: Icons.close,
+                ),
+                const SizedBox(height: 20),
+                CustomImageContainer(
+                  imagePath: tip['rightImage'],
+                  backgroundColor: containerRight,
+                  iconColor: colorGreen,
+                  iconSign: Icons.check,
+                ),
+                const SizedBox(height: 30),
+                Text(
+                  tip['title'],
+                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  tip['description'],
+                  style: const TextStyle(fontSize: 14, color: descTextColor),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
+
+  Widget buildDots() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(
+        tips.length,
+            (index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 3),
+          child: Container(
+            width: 10,
+            height: 10,
+            decoration: BoxDecoration(
+              color: index == pageIndex ? colorGreen : Colors.grey.shade300,
+              shape: BoxShape.circle,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget buildButtons() {
+    return Row(
+      children: [
+        CustomButton(
+          onPressed: pageIndex > 0 ? onBack : () {},
+          text: "Back",
+          horizontalPadding: 30,
+          verticalPadding: 10,
+        ),
+        const Spacer(),
+        CustomButton(
+          onPressed: pageIndex < tips.length - 1 ? onNext : () {},
+          text: pageIndex == tips.length - 1 ? "Finish" : "Next",
+          horizontalPadding: 30,
+          verticalPadding: 10,
+        ),
+      ],
+    );
+  }
+
+
 }
 
