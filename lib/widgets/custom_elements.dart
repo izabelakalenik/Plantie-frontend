@@ -102,6 +102,52 @@ class CustomTextContainer extends StatelessWidget {
   }
 }
 
+class CustomImageContainer extends StatelessWidget {
+  final String imagePath;
+  final Color backgroundColor;
+  final Color iconColor;
+  final IconData iconSign;
+
+
+  const CustomImageContainer({
+    super.key,
+    required this.imagePath,
+    required this.backgroundColor,
+    required this.iconColor,
+    required this.iconSign,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Stack(
+        children: [
+          Center(
+            child: Image.asset(
+              imagePath,
+              height: 100,
+            ),
+          ),
+          Positioned(
+            top: 0,
+            right: 0,
+            child: CircleAvatar(
+              backgroundColor: iconColor,
+              child: Icon(iconSign, color: Colors.white),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
 class CustomButton extends StatelessWidget {
   final String? text;
   final IconData? icon;
@@ -138,7 +184,7 @@ class CustomButton extends StatelessWidget {
               size: 28,
             ),
           if (icon != null && text != null) const SizedBox(width: 8),
-          if (text != null) Text(text!, style: theme.bodyLarge),
+          if (text != null) Text(text!, style: theme.bodyLarge?.copyWith(color: Colors.white)),
         ],
       ),
     );
