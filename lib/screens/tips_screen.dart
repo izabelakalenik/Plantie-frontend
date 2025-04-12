@@ -19,20 +19,20 @@ class _TipsScreenState extends State<TipsScreen> {
 
   final List<Map<String, dynamic>> tips = [
     {
-      'wrongImage': 'assets/icon_tree.png',
-      'rightImage': 'assets/icon_tree.png',
+      'rightImage': 'assets/tips/tip1_correct.png',
+      'wrongImage': 'assets/tips/tip1_wrong.png',
       'title': tip1,
       'description': tip1Description,
     },
     {
-      'wrongImage': 'assets/blurry.png',
-      'rightImage': 'assets/sharp.png',
+      'rightImage': 'assets/tips/tip2_correct.png',
+      'wrongImage': 'assets/tips/tip2_wrong.png',
       'title': tip2,
       'description': tip2Description,
     },
     {
-      'wrongImage': 'assets/dark.png',
-      'rightImage': 'assets/light.png',
+      'rightImage': 'assets/tips/tip3_correct.png',
+      'wrongImage': 'assets/tips/tip3_wrong.png',
       'title': tip3,
       'description': tip3Description,
     },
@@ -63,7 +63,6 @@ class _TipsScreenState extends State<TipsScreen> {
       currentIndex: 1,
       child: TipsScreenContent(
         tips: tips,
-        currentIndex: 1,
         pageIndex: _pageIndex,
         pageController: _pageController,
         onPageChanged: (index) {
@@ -81,7 +80,6 @@ class _TipsScreenState extends State<TipsScreen> {
 class TipsScreenContent extends StatelessWidget {
   final List<Map<String, dynamic>> tips;
   final int pageIndex;
-  final int currentIndex;
   final PageController pageController;
   final void Function(int) onPageChanged;
   final void Function() onNext;
@@ -90,7 +88,6 @@ class TipsScreenContent extends StatelessWidget {
   const TipsScreenContent({
     super.key,
     required this.tips,
-    required this.currentIndex,
     required this.pageIndex,
     required this.pageController,
     required this.onPageChanged,

@@ -66,6 +66,12 @@ flutter:
   assets:
     - assets/icon_tree.png
     - assets/home_fruits.jpg
+    - assets/tips/tip1_correct.png
+    - assets/tips/tip1_wrong.png
+    - assets/tips/tip2_correct.png
+    - assets/tips/tip2_wrong.png
+    - assets/tips/tip3_correct.png
+    - assets/tips/tip3_wrong.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
