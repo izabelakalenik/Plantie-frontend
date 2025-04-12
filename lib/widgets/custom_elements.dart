@@ -151,13 +151,17 @@ class CustomImageContainer extends StatelessWidget {
 class CustomButton extends StatelessWidget {
   final String? text;
   final IconData? icon;
+  final double horizontalPadding;
+  final double verticalPadding;
   final VoidCallback onPressed;
 
   const CustomButton({
     super.key,
     this.text,
     this.icon,
-    required this.onPressed
+    required this.horizontalPadding,
+    required this.verticalPadding,
+    required this.onPressed,
   });
 
   @override
@@ -171,7 +175,7 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 16),
+        padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: verticalPadding),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -181,7 +185,7 @@ class CustomButton extends StatelessWidget {
             Icon(
               icon,
               color: Colors.white,
-              size: 28,
+              size: 32,
             ),
           if (icon != null && text != null) const SizedBox(width: 8),
           if (text != null) Text(text!, style: theme.bodyLarge?.copyWith(color: Colors.white)),

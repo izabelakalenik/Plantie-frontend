@@ -11,14 +11,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return MainLayout(
+    return const MainLayout(
       appBarText: "Plantie",
-      currentIndex: _currentIndex,
-      child: const HomeScreenContent(),
+      currentIndex: 0,
+      child: HomeScreenContent(),
     );
   }
 }
@@ -45,9 +44,7 @@ class HomeScreenContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 50),
-          CustomButton(icon: Icons.photo_camera, onPressed: () {
-
-          },),
+          CustomButton(icon: Icons.photo_camera, horizontalPadding: 50, verticalPadding: 20, onPressed: () {},),
         ],
       ),
     );

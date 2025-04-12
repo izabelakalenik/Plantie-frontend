@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 
 const Color buttonGreen = Color(0xFF409C12);
@@ -9,3 +8,6 @@ const Color containerRight = Color(0xFFD2E6C8);
 
 const Color colorRed = Color(0xFFA81E1E);
 const Color colorGreen = Color(0xFF409C12);
+const Color colorGrey = Color(0xFFE0E0E0);
+
+const Color descTextColor = Colors.black54;
