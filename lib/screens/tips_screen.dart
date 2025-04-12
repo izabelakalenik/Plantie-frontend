@@ -31,7 +31,7 @@ class TipsScreenContent extends StatelessWidget {
 
     return Padding (
       padding: customScreenPadding,
-      child: Column(
+      child: const Column(
 
       ),
     );

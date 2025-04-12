@@ -10,10 +10,10 @@ void navigateTo(BuildContext context, int currentIndex, int targetIndex) {
 
   switch (targetIndex) {
     case 0:
-      screen = const TipsScreen();
+      screen = const HomeScreen();
       break;
     case 1:
-      screen = const HomeScreen();
+      screen = const TipsScreen();
       break;
     default:
       return;

@@ -38,7 +38,7 @@ class HomeScreenContent extends StatelessWidget {
           const SizedBox(height: 50),
           ClipOval(
             child: Image.asset(
-              'assets/home_img.png',
+              'assets/home_fruits.jpg',
               width: 250,
               height: 250,
               fit: BoxFit.cover,

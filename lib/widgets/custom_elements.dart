@@ -15,7 +15,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: Row(
         children: [
           Image.asset(
-            'assets/icon_succulent.png',
+            'assets/icon_tree.png',
             height: 50,
             width: 50,
           ),
