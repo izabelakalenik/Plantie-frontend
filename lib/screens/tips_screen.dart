@@ -4,6 +4,7 @@ import 'package:plant_app/styles/layout.dart';
 import 'package:plant_app/widgets/custom_elements.dart';
 
 import '../constants/texts.dart';
+import '../navigation/navigation_bottom_nav_bar.dart';
 
 
 class TipsScreen extends StatefulWidget {
@@ -112,7 +113,7 @@ class TipsScreenContent extends StatelessWidget {
                   const SizedBox(height: 20),
                   buildDots(),
                   const SizedBox(height: 20),
-                  buildButtons(),
+                  buildButtons(context),
                 ],
               ),
             ),
@@ -188,18 +189,18 @@ class TipsScreenContent extends StatelessWidget {
     );
   }
 
-  Widget buildButtons() {
+  Widget buildButtons(BuildContext context) {
     return Row(
       children: [
         CustomButton(
-          onPressed: pageIndex > 0 ? onBack : () {},
+          onPressed: pageIndex > 0 ? onBack : () {navigateTo(context, 1, 0);},
           text: "Back",
           horizontalPadding: 30,
           verticalPadding: 10,
         ),
         const Spacer(),
         CustomButton(
-          onPressed: pageIndex < tips.length - 1 ? onNext : () {},
+          onPressed: pageIndex < tips.length - 1 ? onNext : () {navigateTo(context, 1, 0);},
           text: pageIndex == tips.length - 1 ? "Finish" : "Next",
           horizontalPadding: 30,
           verticalPadding: 10,

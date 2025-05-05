@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
-import '../navigation/navigation_service.dart';
+import '../navigation/navigation_bottom_nav_bar.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String text;
@@ -74,10 +74,12 @@ class CustomBottomNavBar extends StatelessWidget {
 
 
 class CustomTextContainer extends StatelessWidget {
+  final String? headline;
   final String text;
 
   const CustomTextContainer({
     super.key,
+    this.headline,
     required this.text,
   });
 
@@ -87,20 +89,33 @@ class CustomTextContainer extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      alignment: Alignment.center,
+      alignment: headline != null ? Alignment.centerLeft : Alignment.center,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: boxGreen,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: theme.bodyLarge,
+      child: Column(
+        crossAxisAlignment:
+        headline != null ? CrossAxisAlignment.start : CrossAxisAlignment.center,
+        children: [
+          if (headline != null)
+            Text(
+              headline!,
+              style: theme.titleMedium,
+            ),
+          if (headline != null) const SizedBox(height: 8),
+          Text(
+            text,
+            textAlign: headline != null ? TextAlign.left : TextAlign.center,
+            style: theme.bodyLarge,
+          ),
+        ],
       ),
     );
   }
 }
+
 
 class CustomImageContainer extends StatelessWidget {
   final String imagePath;
@@ -153,7 +168,7 @@ class CustomButton extends StatelessWidget {
   final IconData? icon;
   final double horizontalPadding;
   final double verticalPadding;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const CustomButton({
     super.key,

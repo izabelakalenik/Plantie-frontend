@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
 import 'package:logger/logger.dart';
+import '../screens/result_screen.dart';
 
 Future<Map<String, dynamic>?> sendImageToBackend(File imageFile) async {
   final uri = Uri.parse("http://10.0.2.2:8000/predict/"); // address of the emulator
@@ -36,20 +37,11 @@ Future<Map<String, dynamic>?> sendImageToBackend(File imageFile) async {
   }
 }
 
-void showResponse(BuildContext context, Map<String, dynamic> response) {
-  showDialog(
-    context: context,
-    builder: (_) => AlertDialog(
-      title: Text("Prediction: ${response['predicted_class']}"),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text("Symptoms: ${response['symptoms']}"),
-          const SizedBox(height: 8),
-          Text("Management: ${response['management']}"),
-        ],
-      ),
+void showResponse(BuildContext context, File imageFile, Map<String, dynamic> response) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (_) => ResultScreen(image: imageFile, response: response),
     ),
   );
 }

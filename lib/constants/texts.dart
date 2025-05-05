@@ -9,3 +9,5 @@ const String tip2Description = "Avoid taking blurry, dark or overexposed photos.
 
 const String tip3 = "If your plant is too large, take a photo of its leaves";
 const String tip3Description = "If your plant is too large to fit in the frame, capture its most recognizable parts, such as leaves and flowers.";
+
+const String loadText = "We are identifying your plant and a possible disease, please wait.";

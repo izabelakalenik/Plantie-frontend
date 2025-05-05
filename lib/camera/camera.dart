@@ -35,7 +35,6 @@ void showImageSourceSelector(BuildContext context) {
   );
 }
 
-
 void openCamera(BuildContext context) {
   imageHandler(ImageSource.camera, context);
 }
@@ -52,8 +51,7 @@ Future<void> imageHandler(ImageSource source, BuildContext context) async {
     final response = await sendImageToBackend(imageFile);
 
     if (response != null) {
-      // ignore: use_build_context_synchronously
-      showResponse(context, response);
+      showResponse(context, imageFile, response);
     }
   }
 }
