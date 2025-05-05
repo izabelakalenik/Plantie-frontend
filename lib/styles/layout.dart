@@ -22,9 +22,9 @@ class MainLayout extends StatelessWidget {
       child: Scaffold(
         appBar: CustomAppBar(text: appBarText),
         body: child,
-        bottomNavigationBar: CustomBottomNavBar(
-          currentIndex: currentIndex,
-        ),
+        bottomNavigationBar: currentIndex >= 0
+            ? CustomBottomNavBar(currentIndex: currentIndex)
+            : null,
       ),
     );
   }

@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'api_connection.dart';
+import '../screens/load_screen.dart';
 
 void showImageSourceSelector(BuildContext context) {
   final parentContext = context;
@@ -35,7 +35,6 @@ void showImageSourceSelector(BuildContext context) {
   );
 }
 
-
 void openCamera(BuildContext context) {
   imageHandler(ImageSource.camera, context);
 }
@@ -49,11 +48,13 @@ Future<void> imageHandler(ImageSource source, BuildContext context) async {
 
   if (image != null) {
     final File imageFile = File(image.path);
-    final response = await sendImageToBackend(imageFile);
 
-    if (response != null) {
-      // ignore: use_build_context_synchronously
-      showResponse(context, response);
-    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => LoadScreen(image: imageFile),
+      ),
+    );
   }
 }
+
