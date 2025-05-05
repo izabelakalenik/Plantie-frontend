@@ -123,6 +123,8 @@ class TipsScreenContent extends StatelessWidget {
   }
 
   Widget buildPageView(BuildContext context) {
+    var theme = Theme.of(context).textTheme;
+
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.57,
       child: PageView.builder(
@@ -151,12 +153,12 @@ class TipsScreenContent extends StatelessWidget {
                 const SizedBox(height: 30),
                 Text(
                   tip['title'],
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  style: theme.headlineMedium,
                 ),
                 const SizedBox(height: 10),
                 Text(
                   tip['description'],
-                  style: const TextStyle(fontSize: 14, color: descTextColor),
+                  style: theme.bodyMedium,
                 ),
               ],
             ),

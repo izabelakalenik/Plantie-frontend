@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/constants/texts.dart';
 import 'package:plant_app/styles/layout.dart';
+import '../camera/camera.dart';
 import '../widgets/custom_elements.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -44,7 +45,8 @@ class HomeScreenContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 50),
-          CustomButton(icon: Icons.photo_camera, horizontalPadding: 50, verticalPadding: 20, onPressed: () {},),
+          CustomButton(icon: Icons.photo_camera, horizontalPadding: 50, verticalPadding: 20,
+              onPressed: () => showImageSourceSelector(context)),
         ],
       ),
     );

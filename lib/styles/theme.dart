@@ -16,7 +16,8 @@ final mainTheme = ThemeData(
   ),
   textTheme: const TextTheme(
     headlineLarge: TextStyle(fontWeight: FontWeight.w700),
-    bodyLarge: TextStyle(
-        fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+    headlineMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    bodyLarge: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black),
+    bodyMedium: TextStyle(fontSize: 14, color: descTextColor),
   ),
 );
