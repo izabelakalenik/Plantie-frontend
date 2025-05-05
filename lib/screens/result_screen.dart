@@ -22,7 +22,7 @@ class _ResultScreenState extends State<ResultScreen> {
   Widget build(BuildContext context) {
     return MainLayout(
       appBarText: "Plantie",
-      currentIndex: 0,
+      currentIndex: -1,
       child: ResultScreenContent(
         image: widget.image,
         response: widget.response,

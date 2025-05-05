@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'api_connection.dart';
+import '../screens/load_screen.dart';
 
 void showImageSourceSelector(BuildContext context) {
   final parentContext = context;
@@ -48,10 +48,13 @@ Future<void> imageHandler(ImageSource source, BuildContext context) async {
 
   if (image != null) {
     final File imageFile = File(image.path);
-    final response = await sendImageToBackend(imageFile);
 
-    if (response != null) {
-      showResponse(context, imageFile, response);
-    }
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => LoadScreen(image: imageFile),
+      ),
+    );
   }
 }
+

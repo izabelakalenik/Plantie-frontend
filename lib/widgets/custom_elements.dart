@@ -49,7 +49,7 @@ class CustomBottomNavBar extends StatelessWidget {
     final theme = Theme.of(context).bottomNavigationBarTheme;
 
     return BottomNavigationBar(
-      currentIndex: currentIndex,
+      currentIndex: currentIndex >= 0 ? currentIndex : 0,
       selectedItemColor: theme.selectedItemColor,
       unselectedItemColor: theme.unselectedItemColor,
       showUnselectedLabels: theme.showUnselectedLabels,
@@ -57,7 +57,11 @@ class CustomBottomNavBar extends StatelessWidget {
       unselectedIconTheme: theme.unselectedIconTheme,
       selectedLabelStyle: theme.selectedLabelStyle,
       unselectedLabelStyle: theme.unselectedLabelStyle,
-      onTap: (index) => navigateTo(context, currentIndex, index),
+      onTap: (index) {
+        if (currentIndex >= 0) {
+          navigateTo(context, currentIndex, index);
+        }
+      },
       items: const [
         BottomNavigationBarItem(
           icon: Icon(Icons.home),

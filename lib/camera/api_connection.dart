@@ -38,7 +38,7 @@ Future<Map<String, dynamic>?> sendImageToBackend(File imageFile) async {
 }
 
 void showResponse(BuildContext context, File imageFile, Map<String, dynamic> response) {
-  Navigator.push(
+  Navigator.pushReplacement(
     context,
     MaterialPageRoute(
       builder: (_) => ResultScreen(image: imageFile, response: response),

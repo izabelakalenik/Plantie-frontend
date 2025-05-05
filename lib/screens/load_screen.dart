@@ -1,22 +1,40 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:plant_app/constants/texts.dart';
 import 'package:plant_app/styles/layout.dart';
+import '../camera/api_connection.dart';
 import '../widgets/custom_elements.dart';
 
 class LoadScreen extends StatefulWidget {
-  const LoadScreen({super.key});
+  final File image;
+
+  const LoadScreen({super.key, required this.image});
 
   @override
   State<LoadScreen> createState() => _LoadScreenState();
 }
 
 class _LoadScreenState extends State<LoadScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _sendImage();
+  }
+
+  Future<void> _sendImage() async {
+    final response = await sendImageToBackend(widget.image);
+
+    if (response != null && mounted) {
+      await Future.delayed(const Duration(seconds: 3));
+      showResponse(context, widget.image, response);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return const MainLayout(
       appBarText: "Plantie",
-      currentIndex: 2,
+      currentIndex: -1,
       child: LoadScreenContent(),
     );
   }
@@ -29,22 +47,15 @@ class LoadScreenContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: customScreenPadding,
-      child: Column(
+      child: const Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const CustomTextContainer(text: loadText),
-          const SizedBox(height: 50),
-          ClipOval(
-            child: Image.asset(
-              'assets/home_fruits.jpg',
-              width: 250,
-              height: 250,
-              fit: BoxFit.cover,
-            ),
-          ),
+          CustomTextContainer(text: loadText),
+          SizedBox(height: 40),
+          CircularProgressIndicator(),
         ],
       ),
     );
   }
 }
+
