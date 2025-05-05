@@ -46,7 +46,7 @@ class HomeScreenContent extends StatelessWidget {
           ),
           const SizedBox(height: 50),
           CustomButton(icon: Icons.photo_camera, horizontalPadding: 50, verticalPadding: 20,
-              onPressed: () => openCamera(context)),
+              onPressed: () => showImageSourceSelector(context)),
         ],
       ),
     );
