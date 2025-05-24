@@ -6,11 +6,13 @@ import '../widgets/custom_elements.dart';
 class ResultScreen extends StatefulWidget {
   final File image;
   final Map<String, dynamic> response;
+  final bool isHealthy;
 
   const ResultScreen({
     super.key,
     required this.image,
     required this.response,
+    required this.isHealthy,
   });
 
   @override
@@ -26,6 +28,7 @@ class _ResultScreenState extends State<ResultScreen> {
       child: ResultScreenContent(
         image: widget.image,
         response: widget.response,
+        isHealthy: widget.isHealthy,
       ),
     );
   }
@@ -34,12 +37,15 @@ class _ResultScreenState extends State<ResultScreen> {
 class ResultScreenContent extends StatelessWidget {
   final File image;
   final Map<String, dynamic> response;
+  final bool isHealthy;
 
   const ResultScreenContent({
     super.key,
     required this.image,
     required this.response,
+    required this.isHealthy,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +64,23 @@ class ResultScreenContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 24),
-          CustomTextContainer(headline: "Prediction", text: "${response['predicted_class']}"),
+          CustomTextContainer(
+          headline: isHealthy ? "Plant status" : "Detected condition",
+          text: "${response['predicted_names']}",
+          ),
           const SizedBox(height: 24),
-          CustomTextContainer(headline: "Diagnosis", text: "${response['symptoms']}"),
+
+          CustomTextContainer(
+          headline: isHealthy ? "Everything looks good" : "Diagnosis",
+          text: "${response['symptoms']}",
+          ),
           const SizedBox(height: 24),
-          CustomTextContainer(headline: "Treatment", text: "${response['management']}"),
-        ],
+
+          CustomTextContainer(
+          headline: isHealthy ? "Care tips" : "Treatment",
+          text: "${response['management']}",
+          ),
+        ]
       ),
     );
   }

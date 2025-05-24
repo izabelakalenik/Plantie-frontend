@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart';
@@ -37,11 +36,11 @@ Future<Map<String, dynamic>?> sendImageToBackend(File imageFile) async {
   }
 }
 
-void showResponse(BuildContext context, File imageFile, Map<String, dynamic> response) {
+void showResponse(BuildContext context, File imageFile, Map<String, dynamic> response, bool isHealthy) {
   Navigator.pushReplacement(
     context,
     MaterialPageRoute(
-      builder: (_) => ResultScreen(image: imageFile, response: response),
+      builder: (_) => ResultScreen(image: imageFile, response: response, isHealthy: isHealthy),
     ),
   );
 }

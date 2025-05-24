@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:plant_app/constants/texts.dart';
 import 'package:plant_app/styles/layout.dart';
-import '../camera/api_connection.dart';
+import '../api/api_connection.dart';
 import '../widgets/custom_elements.dart';
 
 class LoadScreen extends StatefulWidget {
@@ -26,7 +26,9 @@ class _LoadScreenState extends State<LoadScreen> {
 
     if (response != null && mounted) {
       await Future.delayed(const Duration(seconds: 3));
-      showResponse(context, widget.image, response);
+
+      final isHealthy = response['predicted_names']?.toLowerCase().contains('healthy') ?? false;
+      showResponse(context, widget.image, response, isHealthy);
     }
   }
 
