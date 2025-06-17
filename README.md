@@ -8,10 +8,10 @@ This project was developed as part of a master's level Scientific and Implementa
 
 ## Features
 
-- Capture or upload a photo of a plant leaf.
-- Detect visible symptoms like spots, mold, discoloration, dryness, overwatering, or pests.
-- Receive a prediction of the most probable disease and treatment suggestions.
-- Fast and lightweight AI model with high accuracy (95.7%).
+- Capture or upload a photo of a plant leaf
+- Detect visible symptoms like spots, mold, discoloration, dryness, overwatering, or pests
+- Receive a prediction of the most probable disease and treatment suggestions
+- Fast and lightweight AI model
   
 ---
 
@@ -41,5 +41,11 @@ The application uses a **Convolutional Neural Network (CNN)** trained on the [Pl
 
 ##
 
-![image](https://github.com/user-attachments/assets/b9849016-ad8a-4c1c-9609-280f1f546e69)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b9849016-ad8a-4c1c-9609-280f1f546e69" width="240"/>
+  <img src="https://github.com/user-attachments/assets/cbe70da0-08f8-4c01-b4c8-d5fc660513a8" width="244"/>
+  <img src="https://github.com/user-attachments/assets/85bbba5e-9fce-4df3-9dc5-5079681ff9f5" width="250"/>
+</p>
+
+
 
